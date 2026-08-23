@@ -1,0 +1,1109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #06071b;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+/* =========================================
+   SCREEN SYSTEM
+========================================= */
+
+.screen {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 75%,
+            rgba(255, 105, 174, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(100, 80, 180, 0.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #050619 0%,
+            #111538 55%,
+            #080a24 100%
+        );
+}
+
+.screen.active {
+    display: flex;
+    animation: screenIn 0.9s ease forwards;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.9) 0 1px,
+            transparent 1.6px
+        );
+
+    background-size: 125px 125px;
+
+    opacity: 0.7;
+
+    animation: starsMove 20s linear infinite;
+}
+
+.stars::before,
+.stars::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.stars::before {
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 170, 210, 0.8) 0 1px,
+            transparent 1.8px
+        );
+
+    background-size: 190px 190px;
+
+    animation: starsMoveTwo 28s linear infinite;
+}
+
+.stars::after {
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 220, 240, 0.8) 0 1.5px,
+            transparent 2px
+        );
+
+    background-size: 270px 270px;
+
+    opacity: 0.45;
+}
+
+@keyframes starsMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 125px 125px;
+    }
+}
+
+@keyframes starsMoveTwo {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -190px 190px;
+    }
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.screen-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(900px, 92vw);
+
+    text-align: center;
+}
+
+
+/* =========================================
+   FONTS
+========================================= */
+
+.script-text {
+    color: #ffd1e4;
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.small-text {
+    margin-top: 8px;
+
+    color: #d9c9dc;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.08em;
+}
+
+.hint-text {
+    margin-top: 22px;
+
+    color: #e4cbd9;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.08em;
+}
+
+.tiny-label {
+    color: #e6bdd3;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.28em;
+}
+
+
+/* =========================================
+   MOON
+========================================= */
+
+.moon {
+    width: 105px;
+    height: 105px;
+
+    margin: 0 auto 28px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #ffdbea 55%,
+            #ff9fc7
+        );
+
+    box-shadow:
+        0 0 25px rgba(255, 210, 231, 0.65),
+        0 0 65px rgba(255, 135, 187, 0.35);
+
+    animation: moonFloat 4s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.waiting-text {
+    margin-top: 8px;
+
+    color: #d8cbd7;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(1rem, 3vw, 1.35rem);
+}
+
+#countdown {
+    margin-top: 18px;
+
+    color: #ffe8f3;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(3rem, 9vw, 6.5rem);
+
+    letter-spacing: 0.05em;
+
+    text-shadow:
+        0 0 12px #ff82b7,
+        0 0 35px rgba(255, 94, 165, 0.65);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.main-button {
+    margin-top: 28px;
+
+    padding: 13px 29px;
+
+    border: none;
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9ac3,
+            #eb6fa8
+        );
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 0.76rem;
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+
+    box-shadow:
+        0 0 20px rgba(255, 105, 170, 0.35);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.main-button:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 0 32px rgba(255, 105, 170, 0.55);
+}
+
+.main-button:active {
+    transform: scale(0.96);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================
+   4:24 SCREEN
+========================================= */
+
+.time {
+    margin-top: 15px;
+
+    color: #ffb4d3;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(5rem, 14vw, 9rem);
+
+    font-weight: 500;
+
+    line-height: 0.9;
+
+    text-shadow:
+        0 0 12px #ff73b2,
+        0 0 35px #ff73b2,
+        0 0 70px rgba(255, 100, 170, 0.6);
+
+    animation: timeGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes timeGlow {
+    50% {
+        text-shadow:
+            0 0 20px #ff73b2,
+            0 0 55px #ff73b2,
+            0 0 100px rgba(255, 100, 170, 0.75);
+    }
+}
+
+.time-message {
+    max-width: 600px;
+
+    margin: 25px auto 0;
+
+    color: #eadce4;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(1.15rem, 3vw, 1.6rem);
+}
+
+
+/* =========================================
+   BIRTHDAY SCREEN
+========================================= */
+
+.sparkles {
+    color: #ffb0d1;
+
+    font-size: 2rem;
+
+    animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.birthday-title {
+    margin-top: 18px;
+
+    color: #fff0f8;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(4rem, 12vw, 8.5rem);
+
+    font-weight: 500;
+
+    line-height: 0.82;
+
+    text-shadow:
+        0 0 10px #ff7db6,
+        0 0 30px #ff7db6,
+        0 0 65px rgba(255, 91, 161, 0.65);
+}
+
+.birthday-name {
+    margin-top: 22px;
+
+    color: #ffc3dc;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+
+/* =========================================
+   CAKE
+========================================= */
+
+.cake-area {
+    position: relative;
+
+    width: min(470px, 90vw);
+    height: 340px;
+
+    margin: 10px auto;
+}
+
+.cake {
+    position: absolute;
+
+    left: 50%;
+    bottom: 20px;
+
+    width: min(350px, 72vw);
+    height: 165px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px 20px 30px 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffb8d5,
+            #e97aaa
+        );
+
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 35px rgba(255, 110, 176, 0.3);
+}
+
+.cake-top {
+    position: absolute;
+
+    top: -27px;
+    left: 0;
+
+    width: 100%;
+    height: 62px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 12% 52%,
+            #fff5fa 0 11px,
+            transparent 12px
+        ),
+        radial-gradient(
+            circle at 31% 40%,
+            #fff5fa 0 13px,
+            transparent 14px
+        ),
+        radial-gradient(
+            circle at 52% 55%,
+            #fff5fa 0 12px,
+            transparent 13px
+        ),
+        radial-gradient(
+            circle at 73% 42%,
+            #fff5fa 0 13px,
+            transparent 14px
+        ),
+        radial-gradient(
+            circle at 90% 55%,
+            #fff5fa 0 11px,
+            transparent 12px
+        ),
+        #ff9fc7;
+
+    box-shadow:
+        0 8px 18px rgba(90, 20, 60, 0.18);
+}
+
+.cream {
+    position: absolute;
+
+    width: 55px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #fff3f8;
+
+    opacity: 0.8;
+}
+
+.cream-one {
+    top: -5px;
+    left: 35px;
+}
+
+.cream-two {
+    top: 5px;
+    left: 105px;
+}
+
+.cream-three {
+    top: -2px;
+    left: 170px;
+}
+
+.cream-four {
+    top: 5px;
+    right: 30px;
+}
+
+.cake-heart {
+    position: absolute;
+
+    color: #d85891;
+
+    font-size: 1.2rem;
+}
+
+.heart-one {
+    top: 72px;
+    left: 65px;
+}
+
+.heart-two {
+    top: 105px;
+    left: 160px;
+}
+
+.heart-three {
+    top: 70px;
+    right: 70px;
+}
+
+
+/* =========================================
+   CANDLE
+========================================= */
+
+.candle {
+    position: absolute;
+
+    left: 50%;
+    bottom: 185px;
+
+    z-index: 10;
+
+    width: 25px;
+    height: 88px;
+
+    cursor: pointer;
+
+    transform: translateX(-50%);
+}
+
+.candle-stick {
+    width: 25px;
+    height: 88px;
+
+    border-radius: 7px;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #ffffff 0 8px,
+            #ffb2d0 8px 16px
+        );
+}
+
+.flame {
+    position: absolute;
+
+    top: -42px;
+    left: 50%;
+
+    width: 26px;
+    height: 42px;
+
+    transform:
+        translateX(-50%)
+        rotate(-45deg);
+
+    border-radius:
+        50%
+        50%
+        50%
+        0;
+
+    background:
+        radial-gradient(
+            circle at 50% 65%,
+            #ffffff 0 12%,
+            #ffd06d 30%,
+            #ff8c43 65%,
+            transparent 70%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 12px #ffb45e
+        );
+
+    animation:
+        flameMove 0.9s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes flameMove {
+    to {
+        transform:
+            translateX(-50%)
+            rotate(-45deg)
+            scale(0.82)
+            translateY(3px);
+    }
+}
+
+.candle.blown .flame {
+    opacity: 0;
+
+    animation: none;
+
+    transform:
+        translateX(-50%)
+        scale(0.1);
+
+    transition: 0.4s ease;
+}
+
+
+/* =========================================
+   MUSIC
+========================================= */
+
+.music-symbol {
+    color: #ff9fc6;
+
+    font-size: 3.5rem;
+
+    text-shadow:
+        0 0 20px #ff73b2;
+
+    animation:
+        musicBounce
+        2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes musicBounce {
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(5deg);
+    }
+}
+
+.music-card {
+    display: flex;
+
+    align-items: center;
+
+    width: min(380px, 85vw);
+
+    margin: 30px auto 0;
+
+    padding: 15px 18px;
+
+    border:
+        1px solid
+        rgba(255, 180, 215, 0.18);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(10px);
+}
+
+.music-disc {
+    display: grid;
+
+    place-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9bc4,
+            #db6195
+        );
+
+    box-shadow:
+        0 0 20px rgba(255, 100, 170, 0.3);
+
+    animation:
+        discSpin 4s
+        linear infinite;
+}
+
+@keyframes discSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    margin-left: 15px;
+
+    text-align: left;
+}
+
+.music-info span {
+    color: #f4e4ed;
+
+    font-size: 0.82rem;
+}
+
+.music-info small {
+    color: #cdbac8;
+
+    font-size: 0.68rem;
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.envelope {
+    position: relative;
+
+    width: min(430px, 82vw);
+    height: 275px;
+
+    margin: 30px auto 15px;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(
+            0 25px 35px rgba(0, 0, 0, 0.4)
+        );
+}
+
+.envelope-back {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 8px;
+
+    background: #e7cfb5;
+}
+
+.letter-inside {
+    position: absolute;
+
+    left: 10%;
+    bottom: 0;
+
+    width: 80%;
+    height: 92%;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5e8,
+            #e9d7c0
+        );
+
+    transition:
+        transform 0.8s ease;
+}
+
+.envelope-front {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    background: #ddc2a3;
+
+    clip-path:
+        polygon(
+            0 25%,
+            50% 62%,
+            100% 25%,
+            100% 100%,
+            0 100%
+        );
+}
+
+.envelope-flap {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    background: #f4e2cd;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 60%
+        );
+
+    transform-origin: top;
+
+    transition:
+        transform 0.8s ease;
+}
+
+.wax-seal {
+    position: absolute;
+
+    top: 49%;
+    left: 50%;
+
+    z-index: 7;
+
+    display: grid;
+
+    place-items: center;
+
+    width: 57px;
+    height: 57px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f38ab2,
+            #d85f91
+        );
+
+    font-size: 1.4rem;
+
+    box-shadow:
+        0 0 20px rgba(226, 91, 145, 0.4);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.6s ease;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .letter-inside {
+    transform: translateY(-35px);
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.3);
+}
+
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter-screen {
+    align-items: flex-start;
+
+    overflow-y: auto;
+
+    padding: 35px 0 60px;
+}
+
+.letter-paper {
+    position: relative;
+
+    width: min(900px, 92vw);
+
+    margin: 20px auto;
+
+    padding:
+        clamp(30px, 6vw, 60px);
+
+    border-radius: 6px;
+
+    color: #4b3542;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faeadc,
+            #e8d2bd
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+.letter-paper h2 {
+    margin-bottom: 30px;
+
+    color: #7a435b;
+
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+
+    font-weight: 400;
+}
+
+.letter-content {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+
+    line-height: 1.65;
+}
+
+.letter-content p {
+    margin-bottom: 20px;
+}
+
+.letter-decoration {
+    position: absolute;
+
+    top: 18px;
+    right: 25px;
+
+    color: #cf799d;
+
+    font-size: 2rem;
+}
+
+
+/* =========================================
+   FINAL SCREEN
+========================================= */
+
+.final-screen {
+    text-align: center;
+}
+
+.big-heart {
+    color: #ff9ec7;
+
+    font-size: min(30rem, 70vw);
+
+    line-height: 0.75;
+
+    text-shadow:
+        0 0 10px #ff73b2,
+        0 0 30px #ff73b2,
+        0 0 65px rgba(255, 115, 178, 0.75);
+
+    animation:
+        heartPulse
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes heartPulse {
+    50% {
+        transform: scale(1.04);
+
+        text-shadow:
+            0 0 15px #ff73b2,
+            0 0 45px #ff73b2,
+            0 0 90px rgba(255, 115, 178, 0.8);
+    }
+}
+
+.final-text {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #ffe6f1;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(3rem, 8vw, 5.5rem);
+
+    line-height: 1.05;
+
+    text-shadow:
+        0 0 15px #ff73b2;
+}
+
+.final-subtitle {
+    margin-top: 25px;
+
+    color: #ead9e4;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.3rem;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .moon {
+        width: 80px;
+        height: 80px;
+    }
+
+    #countdown {
+        font-size: 3rem;
+    }
+
+    .birthday-title {
+        font-size: 4.2rem;
+    }
+
+    .cake-area {
+        transform: scale(0.82);
+
+        margin-top: -10px;
+        margin-bottom: -15px;
+    }
+
+    .envelope {
+        transform: scale(0.86);
+
+        margin-top: 10px;
+        margin-bottom: -5px;
+    }
+
+    .letter-screen {
+        padding-top: 20px;
+    }
+
+    .letter-paper {
+        padding: 30px 23px 45px;
+    }
+
+    .letter-content {
+        font-size: 1.05rem;
+    }
+
+    .final-subtitle {
+        margin-top: 15px;
+    }
+}
