@@ -10,9 +10,7 @@ let envelopeOpened = false;
 
 
 function showScreen(number) {
-    const screens = document.querySelectorAll(".screen");
-
-    screens.forEach(function(screen) {
+    document.querySelectorAll(".screen").forEach(function(screen) {
         screen.classList.remove("active");
     });
 
@@ -30,28 +28,21 @@ function formatNumber(number) {
 
 
 function updateCountdown() {
-
-    const now = Date.now();
-
-    const difference = birthdayTime - now;
-
+    const difference = birthdayTime - Date.now();
 
     if (difference <= 0) {
-
         countdown.textContent = "04:24";
 
         if (!countdownFinished) {
-
             countdownFinished = true;
 
             setTimeout(function() {
                 showScreen(2);
-            }, 1200);
+            }, 1500);
         }
 
         return;
     }
-
 
     const days = Math.floor(
         difference / (1000 * 60 * 60 * 24)
@@ -72,17 +63,13 @@ function updateCountdown() {
         1000
     );
 
-
     if (days > 0) {
-
         countdown.textContent =
             days + "d " +
             formatNumber(hours) + ":" +
             formatNumber(minutes) + ":" +
             formatNumber(seconds);
-
     } else {
-
         countdown.textContent =
             formatNumber(hours) + ":" +
             formatNumber(minutes) + ":" +
@@ -96,25 +83,21 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 
-/* SCREEN 2 → SCREEN 3 */
+/* 4:24 → HAPPY BIRTHDAY */
 
 document
     .getElementById("continueFromTime")
     .addEventListener("click", function() {
-
         showScreen(3);
-
     });
 
 
-/* SCREEN 3 → SCREEN 4 */
+/* HAPPY BIRTHDAY → CAKE */
 
 document
     .getElementById("continueToCake")
     .addEventListener("click", function() {
-
         showScreen(4);
-
     });
 
 
@@ -130,40 +113,25 @@ document
 
         candleBlown = true;
 
-        const candle =
-            document.getElementById("candle");
-
-        const hint =
-            document.getElementById("candleHint");
+        const candle = document.getElementById("candle");
+        const hint = document.getElementById("candleHint");
 
         candle.classList.add("blown");
 
-        hint.textContent =
-            "wish made ✦";
-
-
-        /*
-         * The song will be connected later.
-         * For now, no music is played.
-         */
+        hint.textContent = "wish made ✦";
 
         setTimeout(function() {
-
             showScreen(5);
-
         }, 1500);
-
     });
 
 
-/* SCREEN 5 → SCREEN 6 */
+/* MUSIC → ENVELOPE */
 
 document
     .getElementById("continueToEnvelope")
     .addEventListener("click", function() {
-
         showScreen(6);
-
     });
 
 
@@ -179,26 +147,17 @@ document
 
         envelopeOpened = true;
 
-        const envelope =
-            document.getElementById("envelope");
-
-        const hint =
-            document.getElementById("envelopeHint");
-
-        const button =
-            document.getElementById("openLetterButton");
+        const envelope = document.getElementById("envelope");
+        const hint = document.getElementById("envelopeHint");
+        const button = document.getElementById("openLetterButton");
 
         envelope.classList.add("open");
 
-        hint.textContent =
-            "Your letter is waiting for you ♡";
+        hint.textContent = "Your letter is waiting for you ♡";
 
         setTimeout(function() {
-
             button.classList.remove("hidden");
-
         }, 800);
-
     });
 
 
@@ -207,18 +166,14 @@ document
 document
     .getElementById("openLetterButton")
     .addEventListener("click", function() {
-
         showScreen(7);
-
     });
 
 
-/* LETTER → FINAL SCREEN */
+/* LETTER → FINAL */
 
 document
     .getElementById("finishLetter")
     .addEventListener("click", function() {
-
         showScreen(8);
-
     });
