@@ -1,4 +1,4 @@
-const birthdayTime = new Date(2026, 7, 24, 16, 24, 0).getTime();
+const birthdayTime = Date.now() + 10000;
 
 const countdown = document.getElementById("countdown");
 
